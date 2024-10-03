@@ -33,17 +33,23 @@
             let reverseVelocityY =  Math.random() * 4
             if (this.velocity.x > 0 ) {                     // check for collisions ball/rightpaddle: velocity.x > 0 means that the ball HAS to move towards left.
                 // if the right side of the ball collides with the left border of the right paddle, and the position of the
-                // bottom of the ball is greater than the top of the right paddle (remember: Canvas increases the Y from TOP TO BOTTOM. 
+                // bottom of the ball is greater than the top of the right paddle (remember: Canvas increases the Y from TOP TO BOTTOM.)
+                // and the position of the top of the ball is lower than the bottom of the right paddle: WHEN THIS IF STATEMENT RETURNS TRUE, 
+                // a collision has just happened between ball and the right paddle.
+                // in this case, move the ball to the opposite direction.
                 if ( ballSide.right >= paddle.right && ballSide.down >= paddle.top.right && ballSide.up <= paddle.bottom.right ) { 
                     this.velocity.x = reverseVelocityX; this.velocity.y =  6 
                 }
             }
+            // same logic applied as above for the next three statements. 
             if (this.velocity.x < 0 ) {                     // check for collisions ball/leftpaddle
                 if ( ballSide.left <= paddle.left && ballSide.down >= paddle.top.left && ballSide.up <= paddle.bottom.left ) { 
                     this.velocity.x = reverseVelocityX; this.velocity.y = reverseVelocityY; 
                 }
             }
             if (ballSide.up <= canvaBoundaries.top || ballSide.down >= canvaBoundaries.bottom){ this.velocity.y = -this.velocity.y } // check for collisions ball/top-down canvaBoundaries:
+          
+            // LOSING CONDITIONAL: ball touches the Canvas boundaries. set the game.over property to 1 and stop the animation loop.
             if ( ballSide.right >= canvaBoundaries.left || ballSide.left <= canvaBoundaries.right ) { this.velocity.x = 0; game.over = 1; }   // endgame conditionals;
         }
         update() { this.draw(); this.ballCollisionLogic(); this.position.x += this.velocity.x; this.position.y += this.velocity.y; }
