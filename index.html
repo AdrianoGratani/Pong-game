@@ -55,10 +55,12 @@
         update() { this.draw(); this.ballCollisionLogic(); this.position.x += this.velocity.x; this.position.y += this.velocity.y; }
     }
 
+    // INSTANCES OF THE CLASSES
     const paddle1 = new Paddle({position: { x: 10, y: 100 }});
     const paddle2 = new Paddle({position: { x: canvas.width -10 * 2, y: 100 }});
     const gameBall = new Ball({position: { x: canvas.width / 2, y: canvas.height / 2 }});
 
+    // THE RENDERING LOOP: .requestAnimationFrame calls the animation map. CALLS animation method for each instance 
     function animation() { if (game.over){ console.log('game over, YEAAHHHH!'); return; };
         window.requestAnimationFrame(animation); c.fillStyle = 'black'; c.fillRect(0, 0, canvas.width, canvas.height);
         paddle1.update(); paddle2.update(); gameBall.update(); 
