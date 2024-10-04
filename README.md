@@ -63,11 +63,11 @@ Let's see each of these in more detail:
           - same logic is applied in case the right paddle loses the game.
 
 ### Instances ###
-  We set the Canvas, the Class for the Paddle and for the Ball, methods to draw each class and the logic to detect collision. Now it's time to create the instances of the classes in order to make our game real.
+  We set the Canvas, the Class for the Paddle and for the Ball, methods to draw each classes and the logic to detect collision. Now it's time to create the instances of the classes in order to make our game real.
   - we initialize three variables, one for each paddle and one for the ball, assigning `position` properties for both x and y axis, as arguments for the constructor.
 
 ### The Animation Loop ###
-  Having created each instance, we can render all the elemnts of the game on our Canvas.
+  Having created each instance, we can render all the elements of the game on our Canvas.
   - we use the `requestAnimationFrame()` from the DOM `window` object, to generate an infinite loop: for every frame we call `.update()` method of each instance. Their shapes will get rerendered and every new frame will clear the previous one.
   - Lastly, the losing condition should stop the loop using a `return` statement.
 
