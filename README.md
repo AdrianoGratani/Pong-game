@@ -44,16 +44,20 @@ Let's see each of these in more detail:
   - `ballCollisionLogic()`: the core of the game, here things get really interesting. this function sets:
   - 1) three objects to store the location of any type of boundary and
   - 2) what happens when ball collides against paddles or the boundaries of the screen:
+  - 3) losing conditionals.
+       1) 
       - one object for the boundaries of the ball (`ballSide`);
       - one object for the boundaries of the canvas (`canvaBoundaries`);
       - last object for the boundaries of each paddle (`paddle`);
     ( Canvas measures in pixel, from LEFT (0) to RIGHT (canvas size) for the x-axis, and from TOP to BOTTOM for the y-axis. If we add (depending on which side) width and height  to the position of each instance, we get their boundaries. )
       - Having set these three objects, we have all the data to control the logic of the game: preventing the ball to overflow outside the Canvas, and to make it bounce against the boundary of each paddle.
+       2)
       - using IF statements we control the behaviour of the Ball:
           - if the velocity on the x axis is greater than 0 (which means: Ball is moving towards right side of the screen), we access another IF statement to verify the location of the ball accessing the three object previously declared, inside the if condition statement. If the cohordinates of the right boundaries of the ball are greater than the left boundaries of the right paddle, and the bottom cohordinates of the ball are not lower than top of the right paddle, it means that A COLLISION JUST HAPPENED.
             If this is true, set the velocity on the x-axis to its opposite.
-
           - Basically, the same logic is applied in case the ball collides with the left paddle, or with the top or bottom of the Canvas.
-
+       3) 
+          - if the ball left-boundary cohordinates are lower than the left-side boundary of the Canvas, means that the left paddle missed the ball, failing to prevent the ball from touching its side. The player loses the game, and the game immediately stops by breaking from the animation loop.
+          - same logic is applied in case the right paddle loses the game.
         
     
