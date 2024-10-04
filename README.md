@@ -1,8 +1,8 @@
 # Pacman #
 ## My Code Analysis ##
-### Adriano Gratani ###
+### Adriano Gratani, 2024 ###
 
-### Presentation of this project ###
+### Description of this Project ###
 
 I chose to write the code to recreate this game when I started my coding journey, to learn more about JavaScript and to grasp a basic understanding of Object-Oriented Programming principles. 
 
@@ -34,6 +34,10 @@ only two methods are needed: `draw()` and `update()`.
 
 `Ball` class:
 This element can move in any direction, and when it collides with one of the paddles should go towards the opposite direction. 
-The code for this class consists of FOUR main parts, the constructor, a `draw()` method to draw the instance on the screen, a collision-detector (a function) and lastly another method to update the drawing of this instance on the animation loop. Let's see each of these in more detail:
+The code for this class consists of FOUR main parts: 1) the constructor, 2) a `draw()` method to draw the instance on the screen, 3) the collision-detector (a function), and lastly 3) the method to update the drawing of this instance on the animation loop. 
+Let's see each of these in more detail:
 
-- the constructor takes two arguments, `position` for the position of the ball frame by frame (we'll update the velocity for each axis to the ball position on the update() function, later on), and `speed = 3`, for the speed of the ball, which is already set to a fallback integer of `3` since we don't need to make this value dynamic. Here, we want to keep things simple to understand the vary basics of programming following Object-Oriented-Programming.
+  - the constructor takes two arguments, `position` for the position of the ball frame by frame (we'll update the velocity for each axis to the ball position on the update() function, later on), and `speed = 3`, for the speed of the ball, which is already set to a fallback integer of `3` since we don't need to make this value dynamic. ( Here, we want to keep things simple to understand the vary basics of programming following Object-Oriented-Programming. )
+  Inside the scope of the constructor, we initialize `position`, `speed`, but also ball's `width` and `height` and its `velocity`. `velocity` it's basically a vector (an amount of both direction and magnitued), which indicates how fast and in which direction an object is moving. In my case, it's an object with two keys, `x` and `y`, which of them generates a random value based on the followin rule: if `Math.random()` generates an integer which is less than 0, `velocity` will be equal to the negative `speed`.
+  - the `draw()` method: now that the constructor is set with all the properties we need for the shape and the movement of the ball, we call the Context API methods to draw the ball on our Canvas. ( VERY IMPORTANT, we only draw the ball, this is not the animation! )
+    "Drawing" means assigning color and shape to an element. We use `context.fillStyle()` to set the color to a fallback value of `white`, 
