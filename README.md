@@ -60,5 +60,19 @@ Let's see each of these in more detail:
        3) 
           - if the ball left-boundary cohordinates are lower than the left-side boundary of the Canvas, means that the left paddle missed the ball, failing to prevent the ball from touching its side. The player loses the game, and the game immediately stops by breaking from the animation loop.
           - same logic is applied in case the right paddle loses the game.
-        
-    
+
+### Instances ###
+  We set the Canvas, the Class for the Paddle and for the Ball, methods to draw each class and the logic to detect collision. Now it's time to create the instances of the classes in order to make our game real.
+  - we initialize three variables, one for each paddle and one for the ball, assigning `position` properties for both x and y axis, as arguments for the constructor.
+
+### The Animation Loop ###
+  Having created each instance, we can render all the elemnts of the game on our Canvas.
+  - we use the `requestAnimationFrame()` from the DOM `window` object, to generate an infinite loop: for every frame we call `.update()` method of each instance. Their shapes will get rerendered and every new frame will clear the previous one.
+  - Lastly, the losing condition should stop the loop using a `return` statement.
+
+### Event Listeners ###
+
+  Each user has two keys, one for move the paddle up, the other to move down.
+  -  We need to add an EventListener to the `window` object. 
+      - we want to monitor four keys, so we use a `switch` statements which takes the `event.key` as argument ( = the key pressed triggered the event listener, now we can access this object in this switch). Based on each case, we set a different behaviour: i.e. if the user presses 'w', the eventLIstener `keydown` is triggered which  triggers a callback function to the switch statement. If the `event.key` value equals the one of the `w` case, the speed of the left paddle will be negative = the paddle will move upwards.
+      - same logic is applied for all other cases.
