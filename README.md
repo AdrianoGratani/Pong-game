@@ -41,8 +41,19 @@ Let's see each of these in more detail:
   Inside the scope of the constructor, we initialize `position`, `speed`, but also ball's `width` and `height` and its `velocity`. `velocity` it's basically a vector (an amount of both direction and magnitued), which indicates how fast and in which direction an object is moving. In my case, it's an object with two keys, `x` and `y`, which of them generates a random value based on the followin rule: if `Math.random()` generates an integer which is less than 0, `velocity` will be equal to the negative `speed`.
   - the `draw()` method: now that the constructor is set with all the properties we need for the shape and the movement of the ball, we call the Context API methods to draw the ball on our Canvas. ( VERY IMPORTANT, we only draw the ball, this is not the animation! )
     "Drawing" means assigning color and shape to an element. We use `context.fillStyle()` to set the color to a fallback value of `white`, and `context.fillRect()` to draw the shape using the properties taken from the Constructor: `this.position` on both axis, `width` and `height`.
-  - `ballCollisionLogic()`: the core of the game, here things get really interesting. this function sets three object to store the location of any type of boundary:
+  - `ballCollisionLogic()`: the core of the game, here things get really interesting. this function sets:
+  - 1) three objects to store the location of any type of boundary and
+  - 2) what happens when ball collides against paddles or the boundaries of the screen:
       - one object for the boundaries of the ball (`ballSide`);
       - one object for the boundaries of the canvas (`canvaBoundaries`);
       - last object for the boundaries of each paddle (`paddle`);
     ( Canvas measures in pixel, from LEFT (0) to RIGHT (canvas size) for the x-axis, and from TOP to BOTTOM for the y-axis. If we add (depending on which side) width and height  to the position of each instance, we get their boundaries. )
+      - Having set these three objects, we have all the data to control the logic of the game: preventing the ball to overflow outside the Canvas, and to make it bounce against the boundary of each paddle.
+      - using IF statements we control the behaviour of the Ball:
+          - if the velocity on the x axis is greater than 0 (which means: Ball is moving towards right side of the screen), we access another IF statement to verify the location of the ball accessing the three object previously declared, inside the if condition statement. If the cohordinates of the right boundaries of the ball are greater than the left boundaries of the right paddle, and the bottom cohordinates of the ball are not lower than top of the right paddle, it means that A COLLISION JUST HAPPENED.
+            If this is true, set the velocity on the x-axis to its opposite.
+
+          - Basically, the same logic is applied in case the ball collides with the left paddle, or with the top or bottom of the Canvas.
+
+        
+    
