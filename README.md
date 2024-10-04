@@ -45,7 +45,8 @@ Let's see each of these in more detail:
   - 1) three objects to store the location of any type of boundary and
   - 2) what happens when ball collides against paddles or the boundaries of the screen:
   - 3) losing conditionals.
-      1) 
+  Let's see each of them.
+       1) 
       - one object for the boundaries of the ball (`ballSide`);
       - one object for the boundaries of the canvas (`canvaBoundaries`);
       - last object for the boundaries of each paddle (`paddle`);
